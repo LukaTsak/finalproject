@@ -1,6 +1,12 @@
 <div class="card">
-    <img src="https://course-jsbasic.javascript.ru/assets/products/laab_kai_chicken_salad.png" alt="Image Expected">
-    <div class="name x">Name: </div>
-    <div class="veg x">Vegetarian: </div>
-    <div class="spice x">Spiciness: </div>
+    <img src="{{el.image}}" alt="Image Expected">
+
+    <div class="main">
+        <div class="name x">Name: {{el.name}}</div>
+        <div *ngIf="el.vegeterian == true" class="veg x">Vegeterian</div>
+        <div *ngIf="el.nuts == true" class="nuts x">With Nuts</div>
+        <div class="spice x">Spiciness: {{el.spiciness}}</div>
+        <div class="price x">Price: {{el.price}}</div>
+    </div>
+
 </div>

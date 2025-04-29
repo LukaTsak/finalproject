@@ -14,18 +14,35 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
-export class MainComponent implements OnInit {
-  title = 'finalproject';
-  data: any[] = [];
-  searchTerm: string = '';
-
-  constructor(private apiService: ApiService, private http: HttpClient) { }
+export class MainComponent {
+    constructor(private apiService: ApiService, private http: HttpClient) { }
 
   ngOnInit() {
-    console.log('hi')
-    this.apiService.getData().subscribe((response: any) => {
-      console.log(response);
-      console.log('hi')
-    });
+    this.apiService.getData().subscribe((res: any) => {
+      this.dishesArray = res;
+      });
+    } else {
+      console.error('One or more filter parameters are undefined.');
+    }
   }
+
+  dishesArray : any = []
+
+  nutsPreference!: boolean ;
+  vegPreference!: boolean
+  category! : string ;
+    if (this.nutsPreference !== undefined && this.vegPreference !== undefined && this.category !== undefined && this.spiceLevel !== undefined) {
+      this.apiService.getFilteredData(this.nutsPreference, this.vegPreference, this.category, this.spiceLevel).subscribe((res: any) => {
+
+  filterData() {
+    this.apiService.getFilteredData(this.nutsPreference,this.vegPreference,this.category,this.spiceLevel).subscribe((res: any) => {
+    this.dishesArray = res;
+    });
+    console.log(this.nutsPreference,this.vegPreference,this.category,this.spiceLevel);
+  }
+
+
+
+
+
 }

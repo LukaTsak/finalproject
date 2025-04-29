@@ -1,6 +1,7 @@
 main {
   width: 100%;
-  height: 70vh;
+  height: fit-content;
+  min-height: 70vh;
   background-color: #d8cbb5;
   display: flex;
   flex-direction: column;
@@ -92,6 +93,18 @@ main {
   }
 
   .cards{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     width: 98%;
+    gap: 10px;
+  }
+
+  button{
+    background-color: #f3e6cc;
+    border: 1px solid #d9cbb4;
+    width: 80px;
+    height: 25px;
+    border-radius: 5px;
   }
 }

@@ -9,12 +9,12 @@
       <p>Vegetarian?</p>
 
       <label for="veg-yes">
-        <input type="radio" id="veg-yes" name="veg" value="yes" />
+        <input type="radio" id="veg-yes" name="veg" value="true" [(ngModel)]="vegPreference"/>
         Yes
       </label>
 
       <label for="veg-no">
-        <input type="radio" id="veg-no" name="veg" value="no" />
+        <input type="radio" id="veg-no" name="veg" value="false" [(ngModel)]="vegPreference"/>
         No
       </label>
     </div>
@@ -23,19 +23,19 @@
       <p>Nuts?</p>
 
       <label for="nuts-yes">
-        <input type="radio" id="nuts-yes" name="nuts" value="yes" />
+        <input type="radio" id="nuts-yes" name="nuts" value="true" [(ngModel)]="nutsPreference"/>
         Yes
       </label>
 
       <label for="nuts-no">
-        <input type="radio" id="nuts-no" name="nuts" value="no" />
+        <input type="radio" id="nuts-no" name="nuts" value="false" [(ngModel)]="nutsPreference"/>
         No
       </label>
     </div>
 
     <div class="category">
         <label for="category">Category: </label>
-        <select id="category" name="category">
+        <select id="category" name="category" [(ngModel)]="category">
           <option value="1">Salads</option>
           <option value="2">Soups</option>
           <option value="3">Chicken-Dishes</option>
@@ -48,13 +48,15 @@
     </div>
 
     <div class="spice">
-        <input type="number" id="spice" name="spice" placeholder="Spiciness..." />
+        <input type="number" id="spice" name="spice" placeholder="Spiciness..." [(ngModel)]="spiceLevel"/>
     </div>
+
+    <button (click)="filterData()">Filter</button>
 
   </div>
 
   <div class="cards">
-    <app-card></app-card>
+    <app-card *ngFor="let el of dishesArray" [el] = "el"></app-card>
   </div>
 
 </main>
