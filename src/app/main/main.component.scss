@@ -1,0 +1,89 @@
+main {
+  width: 100%;
+  height: 70vh;
+  background-color: #d8cbb5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .filters {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+    height: 40px;
+    background-color: #f9f0dd;
+    padding-left: 10px;
+    margin-bottom: 20px;
+
+    .search {
+      input {
+        background-color: #f3e6cc;
+        border: 1px solid #d9cbb4;
+        border-radius: 5px;
+        width: 150px;
+        height: 25px;
+        padding-left: 5px;
+      }
+    }
+
+    .veg {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      font-size: 17px;
+      font-weight: 500;
+      color: #000000;
+      cursor: pointer;
+      label {
+        input[type="radio"] {
+          accent-color: #f3e6cc;
+          opacity: 1;
+        }
+      }
+    }
+    .nuts {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      font-size: 17px;
+      font-weight: 500;
+      color: #000000;
+      cursor: pointer;
+      label {
+        input[type="radio"] {
+          accent-color: #f3e6cc;
+          opacity: 1;
+        }
+      }
+    }
+    .category {
+      select {
+        background-color: #f3e6cc;
+        border: 1px solid #d9cbb4;
+        border-radius: 5px;
+        width: 150px;
+        height: 25px;
+      }
+    }
+    .spice {
+      input {
+        background-color: #f3e6cc;
+        border: 1px solid #d9cbb4;
+        border-radius: 5px;
+        width: 100px;
+        height: 25px;
+        padding-left: 5px;
+      }
+      input:checked {
+        label {
+          color: red;
+        }
+      }
+    }
+  }
+
+  .cards{
+    width: 98%;
+  }
+}

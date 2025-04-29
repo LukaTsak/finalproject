@@ -1,0 +1,60 @@
+<main>
+  <div class="filters">
+    <div class="search">
+      <label for="search">Search </label>
+      <input type="text" id="search" name="search" placeholder="Search..." />
+    </div>
+
+    <div class="veg">
+      <p>Vegetarian?</p>
+
+      <label for="veg-yes">
+        <input type="radio" id="veg-yes" name="veg" value="yes" />
+        Yes
+      </label>
+
+      <label for="veg-no">
+        <input type="radio" id="veg-no" name="veg" value="no" />
+        No
+      </label>
+    </div>
+
+    <div class="nuts">
+      <p>Nuts?</p>
+
+      <label for="nuts-yes">
+        <input type="radio" id="nuts-yes" name="nuts" value="yes" />
+        Yes
+      </label>
+
+      <label for="nuts-no">
+        <input type="radio" id="nuts-no" name="nuts" value="no" />
+        No
+      </label>
+    </div>
+
+    <div class="category">
+        <label for="category">Category: </label>
+        <select id="category" name="category">
+          <option value="1">Salads</option>
+          <option value="2">Soups</option>
+          <option value="3">Chicken-Dishes</option>
+          <option value="4">Beef-Dishes</option>
+          <option value="5">Seafood-Dishes</option>
+          <option value="6">Vegetable-Dishes</option>
+          <option value="7">Bits&Bites</option>
+          <option value="8">On-The-Side</option>
+        </select>
+    </div>
+
+    <div class="spice">
+        <input type="number" id="spice" name="spice" placeholder="Spiciness..." />
+    </div>
+
+  </div>
+
+  <div class="cards">
+    <app-card></app-card>
+  </div>
+
+</main>
