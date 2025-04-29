@@ -20,10 +20,7 @@ export class MainComponent {
   ngOnInit() {
     this.apiService.getData().subscribe((res: any) => {
       this.dishesArray = res;
-      });
-    } else {
-      console.error('One or more filter parameters are undefined.');
-    }
+    });
   }
 
   dishesArray : any = []
@@ -31,14 +28,15 @@ export class MainComponent {
   nutsPreference!: boolean ;
   vegPreference!: boolean
   category! : string ;
-    if (this.nutsPreference !== undefined && this.vegPreference !== undefined && this.category !== undefined && this.spiceLevel !== undefined) {
-      this.apiService.getFilteredData(this.nutsPreference, this.vegPreference, this.category, this.spiceLevel).subscribe((res: any) => {
+  spiceLevel! : number ;
 
   filterData() {
-    this.apiService.getFilteredData(this.nutsPreference,this.vegPreference,this.category,this.spiceLevel).subscribe((res: any) => {
+    this.apiService.getFilteredData(this.nutsPreference,this.vegPreference,this.category,this.spiceLevel)?.subscribe((res: any) => {
     this.dishesArray = res;
     });
     console.log(this.nutsPreference,this.vegPreference,this.category,this.spiceLevel);
+
+    // this.apiService.getFilteredData(this.nutsPreference,this.vegPreference,this.category,this.spiceLevel)
   }
 
 

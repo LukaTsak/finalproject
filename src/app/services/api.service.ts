@@ -3,64 +3,44 @@ import { Injectable } from '@angular/core';
 import e from 'express';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ApiService {
-
-  constructor(private http : HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getData() {
-    return this.http.get('https://restaurant.stepprojects.ge/api/Products/GetAll');
+    return this.http.get(
+      'https://restaurant.stepprojects.ge/api/Products/GetAll'
+    );
   }
 
-  getFilteredData(nutsPreference : boolean,vegPreference : boolean,category : string,spiceLevel : number) {
-    // if(category == undefined && spiceLevel == undefined) {
-    //   return this.http.get(`https://restaurant.stepprojects.ge/api/Products/GetFiltered?vegeterian=${vegPreference}&nuts=${nutsPreference}`);
-    //   }
-    // else if(category == undefined && spiceLevel != undefined) {
-    //   return this.http.get(`https://restaurant.stepprojects.ge/api/Products/GetFiltered?vegeterian=${vegPreference}&nuts=${nutsPreference}&spiciness=${spiceLevel}`);
-    // }
-    // else if(category != undefined && spiceLevel == undefined) {
-    //   return this.http.get(`https://restaurant.stepprojects.ge/api/Products/GetFiltered?vegeterian=${vegPreference}&nuts=${nutsPreference}&categoryId=${category}`);
-    // }
-    // else if(nutsPreference == undefined && vegPreference == undefined) {
-    //   return this.http.get(`https://restaurant.stepprojects.ge/api/Products/GetFiltered?spiciness=${spiceLevel}&categoryId=${category}`);
-    // }
-    // else if(nutsPreference == undefined && vegPreference != undefined) {
-    //   return this.http.get(`https://restaurant.stepprojects.ge/api/Products/GetFiltered?vegeterian=${vegPreference}&spiciness=${spiceLevel}&categoryId=${category}`);
-    // }
-    // else if(nutsPreference != undefined && vegPreference == undefined) {
-    //   return this.http.get(`https://restaurant.stepprojects.ge/api/Products/GetFiltered?nuts=${nutsPreference}&spiciness=${spiceLevel}&categoryId=${category}`);
-    // }
-    // else if(nutsPreference == undefined && vegPreference == undefined && spiceLevel == undefined) {
-    //   return this.http.get(`https://restaurant.stepprojects.ge/api/Products/GetFiltered?categoryId=${category}`);
-    // }
-    // else{
-    //   return this.http.get(`https://restaurant.stepprojects.ge/api/Products/GetFiltered?vegeterian=${vegPreference}&nuts=${nutsPreference}&spiciness=${spiceLevel}&categoryId=${category}`);
-    // }
+  getFilteredData(
+    nutsPreference: boolean,
+    vegPreference: boolean,
+    category: string,
+    spiceLevel: number
+  ) {
+    let baseUrl = 'https://restaurant.stepprojects.ge/api/Products/GetFiltered';
+    let queryParams: string[] = [];
 
-    const params: any = [nutsPreference, vegPreference, category, spiceLevel];
-
-    let url = `https://restaurant.stepprojects.ge/api/Products/GetFiltered?vegeterian=${vegPreference}&nuts=${nutsPreference}&spiciness=${spiceLevel}&categoryId=${category}`;
-    let vegurl = 'vegeterian=${vegPreference}&'
-    let nutsurl = 'nuts=${nutsPreference}&'
-    let spiceurl = 'spiciness=${spiceLevel}&'
-    let categoryurl = 'categoryId=${category}&'
-
-    let newUrl! : any
-
-    for(let i = 0; i < params.length; i++) {
-      let categoryarr = [nutsurl,vegurl,categoryurl,spiceurl]
-      if(params[i] == undefined) {
-        newUrl = url.replace(categoryarr[i], '');
-      }
-
-      console.log(newUrl);
-      return this.http.get(newUrl);
-      
+    if (vegPreference !== undefined) {
+      queryParams.push(`vegeterian=${vegPreference}`);
+    }
+    if (nutsPreference !== undefined) {
+      queryParams.push(`nuts=${nutsPreference}`);
+    }
+    if (spiceLevel !== undefined) {
+      queryParams.push(`spiciness=${spiceLevel}`);
+    }
+    if (category) {
+      queryParams.push(`categoryId=${category}`);
     }
 
-    
+    const url = queryParams.length
+      ? `${baseUrl}?${queryParams.join('&')}`
+      : baseUrl;
+
+    console.log(url);
+    return this.http.get(url);
   }
-  
 }
