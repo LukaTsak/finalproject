@@ -6,105 +6,212 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 50px;
+  border-bottom: 2px solid #BB870C;
+
 
   .filters {
     display: flex;
     align-items: center;
+    flex-direction: row;
+    justify-content: start;
     gap: 15px;
     width: 100%;
-    height: 40px;
+    height: fit-content;
+    padding-bottom: 10px;
     background-color: #f9f0dd;
     padding-left: 10px;
     margin-bottom: 20px;
+    border-bottom: 2px solid #BB870C;
 
     .search {
       input {
         background-color: #f3e6cc;
         border: 1px solid #d9cbb4;
         border-radius: 5px;
-        width: 150px;
-        height: 25px;
+        width: 200px;
+        height: 30px;
         padding-left: 5px;
+        font-size: 16px;
+        font-weight: bold;
+        color: #02590f;
       }
+    }
+    #openFilter{
+      display: none;
+      cursor: pointer;
+    }
+    .openFilter{
+      font-size: 18px;
+      cursor: pointer;
+    }
+    #openFilter:checked ~ .divHide {
+      clip-path: inset(0 0 0 0);
+    }
+    #openFilter:checked ~ .openFilter {
+      color: #02590f;
     }
 
-    .veg {
+    .divHide {
       display: flex;
-      gap: 5px;
+      flex-wrap: wrap;
       align-items: center;
-      font-size: 17px;
-      font-weight: 500;
-      color: #000000;
-      cursor: pointer;
-      border-left: 1px solid black;
-      border-right: 1px solid black;
-      padding-left: 5px;
-      padding-right: 5px;
-      label {
+      justify-content: center;
+      // border: 1px solid black;
+      gap: 15px;
+      width: fit-content;
+      height: 100%;
+      background-color: #f9f0dd;
+      clip-path: inset(0 100% 0 0);
+      transition: clip-path 1s ease;
+
+      *{
+        // border: 1px solid black;
+      }
+
+      .veg {
+        display: flex;
+        flex-direction: column;
+        text-align: start;
+        gap: 5px;
+        align-items: center;
+        font-size: 17px;
+        font-weight: 500;
+        color: #000000;
+        cursor: pointer;
+        // border-left: 1px solid black;
+        // border-right: 1px solid black;
+        padding-left: 5px;
+        padding-right: 5px;
+
         input[type="radio"] {
-          accent-color: #f3e6cc;
-          opacity: 1;
+          display: none;
+        }
+        .yescheck:checked ~ .vegyes {
+          color: #02590f;
+          font-weight: bolder;
+        }
+        .nocheck:checked ~ .noveg {
+          color: #02590f;
+          font-weight: bolder;
         }
       }
-    }
-    .nuts {
-      display: flex;
-      gap: 5px;
-      align-items: center;
-      font-size: 17px;
-      font-weight: 500;
-      color: #000000;
-      cursor: pointer;
-      border-left: 1px solid black;
-      border-right: 1px solid black;
-      padding-left: 5px;
-      padding-right: 5px;
-      label {
+      .nuts {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        align-items: center;
+        font-size: 17px;
+        font-weight: 500;
+        color: #000000;
+        cursor: pointer;
+        // border-left: 1px solid black;
+        // border-right: 1px solid black;
+        padding-left: 5px;
+        padding-right: 5px;
+
         input[type="radio"] {
-          accent-color: #f3e6cc;
-          opacity: 1;
+          display: none;
+        }
+        .nutsyes:checked ~ .nutsYesCheck {
+          color: #02590f;
+          font-weight: bolder;
+        }
+        .nutsno:checked ~ .nutsNoCheck {
+          color: #02590f;
+          font-weight: bolder;
         }
       }
-    }
-    .category {
-      select {
-        background-color: #f3e6cc;
-        border: 1px solid #d9cbb4;
-        border-radius: 5px;
-        width: 150px;
-        height: 25px;
+      .category {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        select {
+          background-color: #f3e6cc;
+          border: 1px solid #d9cbb4;
+          border-radius: 5px;
+          width: 150px;
+          height: 25px;
+        }
       }
-    }
-    .spice {
-      input {
+      .spice {
+        display: flex;
+        flex-direction: column-reverse;
+        input {
+          background-color: #f3e6cc;
+          border: 1px solid #d9cbb4;
+          border-radius: 5px;
+          width: 100px;
+          height: 25px;
+          padding-left: 5px;
+        }
+        input:checked {
+          label {
+            color: red;
+          }
+        }
+      }
+      button {
         background-color: #f3e6cc;
         border: 1px solid #d9cbb4;
-        border-radius: 5px;
+        font-size: 16px;
         width: 100px;
         height: 25px;
-        padding-left: 5px;
-      }
-      input:checked {
-        label {
-          color: red;
-        }
+        border-radius: 5px;
+        margin-top: 20px;
+        font-weight: bold;
       }
     }
   }
 
-  .cards{
+  .cards {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     width: 98%;
     gap: 10px;
   }
+}
 
-  button{
-    background-color: #f3e6cc;
-    border: 1px solid #d9cbb4;
-    width: 80px;
-    height: 25px;
-    border-radius: 5px;
+.t {
+  color: red;
+}
+
+
+@media screen and (max-width: 650px) {
+  .filters{
+    flex-direction: column !important;
+    height: fit-content !important;
+    padding-left: 0px !important;
   }
+
+//   #openFilter{
+//     display: none;
+//     cursor: pointer;
+//   }
+//   #openFilter:checked ~ .divHide {
+//     clip-path: inset(0 0 0 0);
+//   }
+
+//   .divHide {
+
+//     clip-path: inset(100% 0 0 0);
+//     transition: clip-path 1s ease;
+  
+// }
+#openFilter {
+  display: none !important;
+  cursor: pointer !important;
+}
+
+#openFilter:checked ~ .divHide {
+  clip-path: inset(0 0 0 0) !important;
+}
+
+.divHide {
+  clip-path: inset( 0 0 100% 0) !important;
+  transition: clip-path 0.5s ease !important;
+  overflow: hidden !important;
+}
+
 }

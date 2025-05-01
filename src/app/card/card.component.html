@@ -1,12 +1,53 @@
-<div class="card">
+<div *ngIf="!el.product" class="card">
     <img src="{{el.image}}" alt="Image Expected">
 
     <div class="main">
-        <div class="name x">Name: {{el.name}}</div>
-        <div *ngIf="el.vegeterian == true" class="veg x">Vegeterian</div>
-        <div *ngIf="el.nuts == true" class="nuts x">With Nuts</div>
-        <div class="spice x">Spiciness: {{el.spiciness}}</div>
-        <div class="price x">Price: {{el.price}}</div>
+        <div class="name x"><p>Name : {{el.name}}</p></div>
+        <div *ngIf="el.vegeterian == true" class="veg x"><p>Vegeterian</p></div>
+        <div *ngIf="el.nuts == true" class="nuts x"><p>With Nuts</p></div>
+        <div class="spice x"><p>Spiciness: {{el.spiciness}}</p></div>
+        <div class="price"><p>{{el.price}} $</p></div>
+    </div>
+
+    <div class="overlay">
+        <div class="overlay-content">
+            <div class="name x"><p>{{el.name}}</p></div>
+            <div *ngIf="el.vegeterian == true" class="veg x"><p>Vegeterian</p></div>
+            <div *ngIf="el.nuts == true" class="nuts x"><p>With Nuts</p></div>
+            <div class="spice x"><p>Spiciness: {{el.spiciness}}</p></div>
+            <div class="price"><p>{{el.price}} $</p></div>
+        </div>
+
+
+        <button (click)="addBasket()">Add To Basket</button>
+    </div>
+
+</div>
+
+<div *ngIf="el.product" class="card t">
+    <img src="{{el.product.image}}" alt="Image Expected">
+
+    <div class="main">
+        <div class="x"><p>Quantity: {{el.quantity}}</p></div>
+        <div class="name x"><p>Name : {{el.product.name}}</p></div>
+        <div *ngIf="el.product.vegeterian == true" class="veg x"><p>Vegeterian</p></div>
+        <div *ngIf="el.product.nuts == true" class="nuts x"><p>With Nuts</p></div>
+        <div class="spice x"><p>Spiciness: {{el.product.spiciness}}</p></div>
+        <div class="price"><p>{{(el.quantity * el.product.price)}} $</p></div>
+    </div>
+
+    <div class="overlay">
+        <div class="overlay-content">
+            <div class="name x"><p>{{el.product.name}}</p></div>
+            <div *ngIf="el.product.vegeterian == true" class="veg x"><p>Vegeterian</p></div>
+            <div *ngIf="el.product.nuts == true" class="nuts x"><p>With Nuts</p></div>
+            <div class="spice x"><p>Spiciness: {{el.product.spiciness}}</p></div>
+            <div class="price"><p>{{(el.quantity * el.product.price)}} $</p></div>
+        </div>
+
+
+        <button (click)="addBasket()">Remove</button>
+        <button (click)="addBasket()">Update</button>
     </div>
 
 </div>

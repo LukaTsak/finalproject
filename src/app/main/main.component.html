@@ -1,40 +1,65 @@
 <main>
   <div class="filters">
     <div class="search">
-      <label for="search">Search </label>
-      <input type="text" id="search" name="search" placeholder="Search..." />
+      <input
+        [(ngModel)]="searchValue"
+        (ngModelChange)="search()"
+        type="text"
+        id="search"
+        name="search"
+        placeholder="Search..."
+      />
     </div>
 
-    <div class="veg">
-      <p>Vegetarian?</p>
 
-      <label for="veg-yes">
-        <input type="radio" id="veg-yes" name="veg" value="true" [(ngModel)]="vegPreference"/>
-        Yes
-      </label>
+    <input id="openFilter" type="checkbox">
+    <label class="openFilter" for="openFilter">Filters</label>
 
-      <label for="veg-no">
-        <input type="radio" id="veg-no" name="veg" value="false" [(ngModel)]="vegPreference"/>
-        No
-      </label>
-    </div>
+    <div class="divHide">
+      <div class="veg">
+        <input
+          class="yescheck"
+          type="radio"
+          id="veg-yes"
+          name="veg"
+          value="true"
+          [(ngModel)]="vegPreference"
+        />
+        <label class="vegyes" for="veg-yes">Vegetarian</label>
 
-    <div class="nuts">
-      <p>Nuts?</p>
+        <input
+          class="nocheck"
+          type="radio"
+          id="veg-no"
+          name="veg"
+          value="false"
+          [(ngModel)]="vegPreference"
+        />
+        <label class="noveg" for="veg-no">Not Vegetarian</label>
+      </div>
+      <div class="nuts">
+        <input
+          class="nutsyes"
+          type="radio"
+          id="nuts-yes"
+          name="nuts"
+          value="true"
+          [(ngModel)]="nutsPreference"
+        />
+        <label class="nutsYesCheck" for="nuts-yes">With Nuts</label>
 
-      <label for="nuts-yes">
-        <input type="radio" id="nuts-yes" name="nuts" value="true" [(ngModel)]="nutsPreference"/>
-        Yes
-      </label>
-
-      <label for="nuts-no">
-        <input type="radio" id="nuts-no" name="nuts" value="false" [(ngModel)]="nutsPreference"/>
-        No
-      </label>
-    </div>
-
-    <div class="category">
-        <label for="category">Category: </label>
+        <input
+          class="nutsno"
+          type="radio"
+          id="nuts-no"
+          name="nuts"
+          value="false"
+          [(ngModel)]="nutsPreference"
+        />
+        <label class="nutsNoCheck" for="nuts-no">Without Nuts</label>
+      </div>
+      <div class="category">
+        <label for="category">Category</label>
         <select id="category" name="category" [(ngModel)]="category">
           <option value="1">Salads</option>
           <option value="2">Soups</option>
@@ -45,18 +70,24 @@
           <option value="7">Bits&Bites</option>
           <option value="8">On-The-Side</option>
         </select>
-    </div>
+      </div>
+      <div class="spice">
+        <input
+          type="number"
+          id="spice"
+          name="spice"
+          placeholder="Spiciness..."
+          [(ngModel)]="spiceLevel"
+        />
+        <label for="spice">How Spicy?</label>
+      </div>
 
-    <div class="spice">
-        <input type="number" id="spice" name="spice" placeholder="Spiciness..." [(ngModel)]="spiceLevel"/>
+      <button (click)="filterData()">Filter</button>
     </div>
-
-    <button (click)="filterData()">Filter</button>
 
   </div>
 
   <div class="cards">
-    <app-card *ngFor="let el of dishesArray" [el] = "el"></app-card>
+    <app-card *ngFor="let el of dishesArray" [el]="el"></app-card>
   </div>
-
 </main>

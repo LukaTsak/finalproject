@@ -43,4 +43,16 @@ export class ApiService {
     console.log(url);
     return this.http.get(url);
   }
+
+  postData(obj: any) {
+    return this.http.post(
+      'https://restaurant.stepprojects.ge/api/Baskets/AddToBasket', obj
+    );
+  }
+
+  getBasket() {
+    return this.http.get(
+      'https://restaurant.stepprojects.ge/api/Baskets/GetAll'
+    );
+  }
 }

@@ -1,0 +1,12 @@
+.cont{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap; 
+    background-color: #D8CBB5;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    min-height: 65.6vh;
+    height: fit-content;
+}
