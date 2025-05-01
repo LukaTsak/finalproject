@@ -55,4 +55,16 @@ export class ApiService {
       'https://restaurant.stepprojects.ge/api/Baskets/GetAll'
     );
   }
+
+  deleteFromBaskett(id: number) {
+    return this.http.delete(
+      `https://restaurant.stepprojects.ge/api/Baskets/DeleteProduct/${id}`
+    );
+  }
+
+  updateInBaskett(object: any) {
+    return this.http.put(
+      'https://restaurant.stepprojects.ge/api/Baskets/UpdateBasket', object,
+    );
+  }
 }

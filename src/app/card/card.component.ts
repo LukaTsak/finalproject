@@ -12,25 +12,13 @@ import { ApiService } from '../services/api.service';
 export class CardComponent {
   constructor(private https: ApiService) {}
   obj: any;
+  basketArr: { id: number; [key: string]: any }[] = [];
 
   @Input() el: any;
 
   @Output() addToBasket = new EventEmitter<any>();
-
-  // addBasket(){
-  //   this.addToBasket.emit(this.el.id);
-  //   console.log(this.el.id);
-  //   let quant = Number(prompt("Quantity?"))
-  //   this.obj = {
-  //     "quantity": quant,
-  //     "price": this.el.price,
-  //     "productId": this.el.id
-  //   };
-  //   console.log(this.obj);
-  //   this.https.postData(this.obj).subscribe((res: any) => {
-  //   console.log(res);})
-  //   this.https.getBasket().subscribe((res: any) => {console.log(res)})
-  // }
+  @Output() delete = new EventEmitter<number>();
+  @Output() update = new EventEmitter<{ id: number; quantity: number }>();
 
   addBasket() {
     this.addToBasket.emit(this.el.id);
@@ -58,4 +46,14 @@ export class CardComponent {
       },
     });
   }
+
+  deleteFromBasket() {
+    this.delete.emit(this.el.product.id);
+    console.log(this.el.product.id);
+  }
+  updateInBasket() {
+    let quant = Number(prompt('Quantity?'));
+    this.update.emit({ id: this.el.product.id, quantity: quant });
+    console.log(this.el.product.id,quant); ;
+ }
 }
