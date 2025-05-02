@@ -3,6 +3,7 @@ import { ApiService } from '../services/api.service';
 import { CardComponent } from '../card/card.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { async } from 'rxjs';
 
 @Component({
   selector: 'app-basket',
@@ -29,7 +30,12 @@ export class BasketComponent {
     });
   }
 
-  loadBasket() {
+  delay(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  async loadBasket() {
+    await this.delay(100)
     this.totalPrice = 0;
     this.https.getBasket().subscribe((res: any) => {
       this.basketArr = res;
@@ -62,6 +68,7 @@ export class BasketComponent {
         this.basketArr = res;
       });
     });
+    this.loadBasket();
   }
 
   updateInBasket(id: number, quant: number) {
