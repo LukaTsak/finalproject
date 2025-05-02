@@ -62,7 +62,7 @@ export class ApiService {
     );
   }
 
-  updateInBaskett(object: any) {
+  updateInBasket(object: any) {
     return this.http.put(
       'https://restaurant.stepprojects.ge/api/Baskets/UpdateBasket', object,
     );

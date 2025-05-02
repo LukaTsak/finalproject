@@ -1,3 +1,11 @@
+.total{
+    background-color: #D8CBB5;
+    display: flex;
+    justify-content: center;
+    font-size: 25px;
+    color: #03590F;
+    padding-top: 10px;
+}
 .cont{
     display: flex;
     align-items: center;
@@ -5,7 +13,7 @@
     gap: 10px;
     flex-wrap: wrap; 
     background-color: #D8CBB5;
-    padding-top: 50px;
+    padding-top: 20px;
     padding-bottom: 50px;
     min-height: 65.6vh;
     height: fit-content;

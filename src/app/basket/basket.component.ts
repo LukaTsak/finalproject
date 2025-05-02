@@ -14,11 +14,29 @@ export class BasketComponent {
   trackByProductId: TrackByFunction<any> = (index, item) => item.product.id;
   constructor(private https: ApiService) {}
 
+  basketArr: { product: { price: number }; quantity: number }[] = [];
   ngOnInit() {
     this.https.getBasket().subscribe((res: any) => {
       console.log(res);
       this.basketArr = res;
       console.log(this.basketArr);
+
+      this.loadBasket();
+
+      this.https.getData().subscribe((res: any) => {
+        this.allCardsArr = res;
+      });
+    });
+  }
+
+  loadBasket() {
+    this.totalPrice = 0;
+    this.https.getBasket().subscribe((res: any) => {
+      this.basketArr = res;
+
+      for (let item of this.basketArr) {
+        this.totalPrice += item.product.price * item.quantity;
+      }
 
       this.https.getData().subscribe((res: any) => {
         this.allCardsArr = res;
@@ -28,12 +46,13 @@ export class BasketComponent {
 
   @Input() array: any;
 
-  basketArr = [];
   allCardsArr = [];
   favouritesArr = [];
   indeX?: Number;
 
   string?: string;
+
+  totalPrice: number = 0;
 
   deleteFromBasket(id: number) {
     this.https.deleteFromBaskett(id).subscribe((res: any) => {
@@ -45,19 +64,13 @@ export class BasketComponent {
     });
   }
 
-  // obj = {
-  //   quantity: prompt('Quantity?'),
-  //   price: 1,
-  //   productId: 1,
-  // };
-
   updateInBasket(id: number, quant: number) {
     let obj = {
       quantity: quant,
       price: 1,
       productId: id,
     };
-    this.https.updateInBaskett(obj).subscribe((res: any) => {
+    this.https.updateInBasket(obj).subscribe((res: any) => {
       console.log(res);
       this.https.getBasket().subscribe((res: any) => {
         console.log(res);
@@ -67,8 +80,6 @@ export class BasketComponent {
     this.https.getBasket().subscribe((res: any) => {
       console.log('Basket response:', res);
     });
-    
-
-    console.log(id, quant);
+    this.loadBasket();
   }
 }

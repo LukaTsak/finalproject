@@ -1,3 +1,4 @@
+<div class="total"><p>Total: {{totalPrice}}</p></div>
 <div class="cont">
     <app-card *ngFor="let el of basketArr" [el]="el" (delete)="deleteFromBasket($event)" (update)="updateInBasket($event.id, $event.quantity)"></app-card>
 </div>
